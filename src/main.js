@@ -1,11 +1,22 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store/";
+import components from "./components/"; //加载公共组件
+
+import "./plugins/element.js";
 import "./registerServiceWorker";
 
-Vue.config.productionTip = false;
+import "./less/common.less";
+import "./less/app.less";
+import "./less/overwrite.css";
 
+Vue.config.productionTip = false;
+Object.keys(components).forEach(key => {
+  var name = key.replace(/(\w)/, v => v.toUpperCase()); //首字母大写
+  console.debug(name); //eslint-disable-line
+  Vue.component(`v${name}`, components[key]);
+});
 new Vue({
   router,
   store,
