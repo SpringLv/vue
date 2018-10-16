@@ -4,3 +4,6 @@
     padding: 0 45px;
     min-width: auto;
 }
+.el-menu {
+    border-right: none;
+}

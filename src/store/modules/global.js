@@ -3,6 +3,7 @@ import clone from "lodash/cloneDeep";
 
 const global = {
   state: {
+    isCollapse: false,
     navigations: [
       {
         name: "首页",
@@ -55,11 +56,17 @@ const global = {
         }
         return item;
       });
+    },
+    SET_ISCOLLAPSE: (state, data) => {
+      state.isCollapse = !data.value;
     }
   },
   actions: {
     setNavigation({ commit }, { type, value }) {
       commit("SET_NAVIGATION", { type, value });
+    },
+    setIsCollapse({ commit }, { value }) {
+      commit("SET_ISCOLLAPSE", { value });
     }
   }
 };

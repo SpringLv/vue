@@ -22,6 +22,25 @@
     flex: 2 32 auto;
     min-width: 180px;
     max-width: 180px;
+    .app-isCollapse {
+      width: 20px;
+      height: 40px;
+      float: right;
+      line-height: 40px;
+      cursor: pointer;
+    }
+  }
+  .app-header-left-lite {
+    flex: 2 32 auto;
+    min-width: 64px;
+    max-width: 64px;
+    .app-isCollapse {
+      width: 15px;
+      height: 40px;
+      float: right;
+      line-height: 40px;
+      cursor: pointer;
+    }
   }
   .app-header-right {
     flex: 30 32 auto;
@@ -42,8 +61,11 @@
 
 <template>
     <div class="app-header">
-        <div class="app-header-left">
+        <div :class="isCollapse ? 'app-header-left-lite' : 'app-header-left'">
             <slot name="left"></slot>
+            <div class="app-isCollapse" @click="(e)=>setIsCollapse(e, isCollapse)">
+              <i :class="isCollapse?'el-icon-arrow-right i-left':'el-icon-arrow-left i-left'"></i>
+            </div>
         </div>
         <div class="app-header-right">
             <ul>
@@ -71,7 +93,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["navigations"])
+    ...mapGetters(["navigations", "isCollapse"])
   },
   methods: {
     RouterChange() {
@@ -85,6 +107,12 @@ export default {
       this.$store.commit("SET_NAVIGATION", {
         type: "hide",
         value: link
+      });
+    },
+    setIsCollapse(e, isCollapse) {
+      console.debug(isCollapse); // eslint-disable-line
+      this.$store.commit("SET_ISCOLLAPSE", {
+        value: isCollapse
       });
     }
   }
