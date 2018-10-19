@@ -7,3 +7,12 @@
 .el-menu {
     border-right: none;
 }
+.el-submenu__title:hover {
+    background-color: rgb(38, 52, 69) !important;
+}
+.el-menu-item.is-active {
+    background-color: rgb(48, 65, 86) !important;
+ }
+ .el-menu-item:hover {
+    background-color: rgb(38, 52, 69) !important;
+ }

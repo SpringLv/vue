@@ -9,7 +9,7 @@
     flex: 1 10 auto;
     max-width: 180px;
     min-width: 180px;
-    background-color: rgb(84, 92, 100);
+    background-color: rgb(48, 65, 86);
     overflow: hidden;
   }
   .width-out-in {
@@ -19,13 +19,24 @@
     flex: 1 10 auto;
     max-width: 64px;
     min-width: 64px;
-    background-color: rgb(84, 92, 100);
+    background-color: rgb(48, 65, 86);
     overflow: hidden;
   }
   .body-content {
     flex: 1 10 auto;
     box-sizing: border-box;
     overflow: hidden;
+  }
+  .slide-fade-enter-active {
+    transition: all 0.3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
   }
 }
 </style>
@@ -47,7 +58,7 @@
       <div class="body-content" slot="content">
         <EasyScrollbar :barOption="getOpt('contetnt')">
           <div :style="{height: height + 'px', padding: '15px'}">
-        <transition name="slide-right">
+        <transition mode="out-in">
         <router-view></router-view>
         </transition>
           </div>

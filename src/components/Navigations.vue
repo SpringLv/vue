@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  box-shadow: 1px 1px 2px #e0e0e0;
+  z-index: 1;
   a {
     text-decoration: none;
     color: #333333;
@@ -50,6 +50,9 @@
       padding: 0;
       list-style: none;
       overflow: hidden;
+      height: 45px;
+      line-height: 45px;
+      box-shadow: 1px -1px 2px #e0e0e0;
       & > li {
         float: left;
         margin-left: 10px;
@@ -70,11 +73,11 @@
         <div class="app-header-right">
             <ul>
                 <li v-for="item in navigations" v-if="item.isShow" :key="item.key">
-                  <el-tag>
+                  <el-tag size="small" :type="item.link === $route.path ? 'success':'info'" closable @close="(e)=>{removeTag(e, item.link)}">
+                    <span v-if="item.isActived">·</span>
                     <router-link :to="item.link">
                       {{ item.name }}
                     </router-link>
-                    <i class="el-icon-close" @click="(e)=>{removeTag(e, item.link)}"></i>
                   </el-tag>
                 </li>
             </ul>
@@ -86,6 +89,11 @@ import { mapGetters } from "vuex";
 export default {
   created() {
     this.RouterChange();
+  },
+  render: cr => {
+    console.debug(cr, '----'); // eslint-disable-line
+    return cr(<div>111</div>);
+    console.debug(cr, '----'); // eslint-disable-line
   },
   watch: {
     $route() {
@@ -99,15 +107,17 @@ export default {
     RouterChange() {
       console.debug(this.$route); // eslint-disable-line
       this.$store.commit("SET_NAVIGATION", {
-        type: "showActived",
+        type: "show",
         value: this.$route.path
       });
     },
     removeTag(e, link) {
+      console.debug(e, link); // eslint-disable-line
       this.$store.commit("SET_NAVIGATION", {
         type: "hide",
         value: link
       });
+      if (link === this.$route.path) this.$router.go(-1);
     },
     setIsCollapse(e, isCollapse) {
       console.debug(isCollapse); // eslint-disable-line

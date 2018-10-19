@@ -16,6 +16,10 @@ export default new Router({
       redirect: "home",
       children: [
         {
+          path: "", //首页
+          component: () => import("@/views/Home.vue")
+        },
+        {
           path: "home", //首页
           component: () => import("@/views/Home.vue")
         },
