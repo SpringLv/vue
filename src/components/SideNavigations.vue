@@ -8,6 +8,7 @@
      background-color="rgb(48, 65, 86)"
      text-color="#fff"
      active-text-color="#67c23a"
+     :collapse-transition="false"
      router
      >
       <el-submenu index="1">

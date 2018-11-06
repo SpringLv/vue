@@ -90,10 +90,8 @@ export default {
   created() {
     this.RouterChange();
   },
-  render: cr => {
-    console.debug(cr, '----'); // eslint-disable-line
-    return cr(<div>111</div>);
-    console.debug(cr, '----'); // eslint-disable-line
+  filters: {
+    add: a => a + 1
   },
   watch: {
     $route() {
@@ -105,14 +103,12 @@ export default {
   },
   methods: {
     RouterChange() {
-      console.debug(this.$route); // eslint-disable-line
       this.$store.commit("SET_NAVIGATION", {
         type: "show",
         value: this.$route.path
       });
     },
     removeTag(e, link) {
-      console.debug(e, link); // eslint-disable-line
       this.$store.commit("SET_NAVIGATION", {
         type: "hide",
         value: link
@@ -120,7 +116,6 @@ export default {
       if (link === this.$route.path) this.$router.go(-1);
     },
     setIsCollapse(e, isCollapse) {
-      console.debug(isCollapse); // eslint-disable-line
       this.$store.commit("SET_ISCOLLAPSE", {
         value: isCollapse
       });

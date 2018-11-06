@@ -1,6 +1,6 @@
 // import ArrayRemove from "lodash/remove";
 import clone from "lodash/cloneDeep";
-import navigations from "../../config.js";
+import navigations from "../../config";
 
 const global = {
   state: {

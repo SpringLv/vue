@@ -21,6 +21,7 @@
     min-width: 64px;
     background-color: rgb(48, 65, 86);
     overflow: hidden;
+    animation: close 0.3s linear;
   }
   .body-content {
     flex: 1 10 auto;
@@ -33,10 +34,24 @@
   .slide-fade-leave-active {
     transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   }
-  .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
+  .slide-fade-enter,
+  .slide-fade-leave-to {
     transform: translateX(10px);
     opacity: 0;
+  }
+  @keyframes close {
+    0% {
+      max-width: 180px;
+      min-width: 180px;
+    }
+    30% {
+      max-width: 120px;
+      min-width: 120px;
+    }
+    100% {
+      max-width: 64px;
+      min-width: 64px;
+    }
   }
 }
 </style>
@@ -76,9 +91,9 @@ export default {
     ...mapGetters(["isCollapse"])
   },
   created() {
-    this.height = document.body.clientHeight - 50;
+    this.height = document.body.clientHeight - 80;
     window.addEventListener("resize", () => {
-      this.height = document.body.clientHeight - 50;
+      this.height = document.body.clientHeight - 80;
     });
   },
   data() {

@@ -28,4 +28,4 @@ const navigations = [
     isShow: false
   }
 ];
-export default { navigations };
+export default navigations;
