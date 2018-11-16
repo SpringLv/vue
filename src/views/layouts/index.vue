@@ -73,7 +73,7 @@
       <div class="body-content" slot="content">
         <EasyScrollbar :barOption="getOpt('contetnt')">
           <div :style="{height: height + 'px', padding: '15px'}">
-        <transition mode="out-in">
+        <transition>
         <router-view></router-view>
         </transition>
           </div>

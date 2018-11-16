@@ -112,7 +112,7 @@ const user = {
             commit("SET_TOKEN", "");
             commit("SET_ROLES", []);
             removeToken();
-            resolve();
+            resolve("success");
           })
           .catch(error => {
             reject(error);
@@ -122,6 +122,7 @@ const user = {
 
     // 前端 登出
     FedLogOut({ commit }) {
+      console.debug("239123912093");
       return new Promise(resolve => {
         commit("SET_TOKEN", "");
         removeToken();

@@ -43,8 +43,7 @@
     }
   }
   .app-header-right {
-    flex: 30 32 auto;
-    width: 100px;
+    flex: 28 32 auto;
     ul {
       margin: 0;
       padding: 0;
@@ -52,12 +51,16 @@
       overflow: hidden;
       height: 45px;
       line-height: 45px;
-      box-shadow: 1px -1px 2px #e0e0e0;
       & > li {
         float: left;
         margin-left: 10px;
       }
     }
+  }
+  .user-menu {
+    flex: 2 32 auto;
+    min-width: 180px;
+    max-width: 180px;
   }
 }
 </style>
@@ -82,6 +85,16 @@
                 </li>
             </ul>
         </div>
+        <div class="user-menu">
+          <el-dropdown @command="(cmd)=>Logout(cmd)" trigger="click">
+            <span class="el-dropdown-link">
+              {{ name }}<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="logout">注销</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
     </div>
 </template>
 <script>
@@ -99,7 +112,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["navigations", "isCollapse"])
+    ...mapGetters(["navigations", "isCollapse", "name"])
   },
   methods: {
     RouterChange() {
@@ -118,6 +131,14 @@ export default {
     setIsCollapse(e, isCollapse) {
       this.$store.commit("SET_ISCOLLAPSE", {
         value: isCollapse
+      });
+    },
+    Logout(cmd) {
+      console.debug(cmd);
+      this.$store.dispatch("LogOut").then(res => {
+        if (res === "success") {
+          this.$router.push({ path: "login" });
+        }
       });
     }
   }

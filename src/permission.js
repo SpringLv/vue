@@ -5,7 +5,6 @@ import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 import { getToken } from "@/utils/auth"; // getToken from cookie
 
-console.debug("--=-=-=-==-=");
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
 // permission judge function
@@ -16,7 +15,6 @@ function hasPermission(roles, permissionRoles) {
 }
 
 const whiteList = ["/login"]; // no redirect whitelist
-console.debug("------");
 router.beforeEach((to, from, next) => {
   NProgress.start(); // start progress bar
   if (getToken()) {
